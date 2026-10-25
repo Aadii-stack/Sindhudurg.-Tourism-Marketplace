@@ -1,15 +1,8 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+/**
+ * Local JSON Database Architecture Stub
+ * The application is 100% powered locally by src/lib/jsonDatabase.ts (database.json).
+ * Zero cloud or Supabase dependencies required.
+ */
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim();
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim();
-
-export const isSupabaseConfigured = Boolean(
-  supabaseUrl &&
-  supabaseAnonKey &&
-  supabaseUrl.startsWith('https://') &&
-  !supabaseUrl.includes('your-project-id')
-);
-
-export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(supabaseUrl as string, supabaseAnonKey as string)
-  : null;
+export const isSupabaseConfigured = false;
+export const supabase = null;

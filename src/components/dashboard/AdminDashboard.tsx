@@ -21,7 +21,6 @@ import { useMarketplace } from '../../context/MarketplaceContext';
 import { formatINR, formatDate } from '../../lib/utils';
 import { Product, OrderStatus, EnquiryStatus } from '../../types';
 import { AddEditProductModal } from './AddEditProductModal';
-import { isSupabaseConfigured } from '../../lib/supabaseClient';
 
 export const AdminDashboard: React.FC = () => {
   const { user, role, switchDemoRole } = useAuth();
@@ -518,10 +517,10 @@ export const AdminDashboard: React.FC = () => {
         <div className="bg-white rounded-3xl border border-sand-200 p-6 sm:p-8 shadow-xs space-y-6">
           <div>
             <h3 className="text-xl font-bold text-ocean-950 font-serif">
-              Database Synchronization & Cloud Health
+              Local JSON Database Engine & Portability
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Sindhudurg Marketplace features dual-layer storage: automatic fallback to browser localStorage, with instant live synchronization to Supabase PostgreSQL when credentials are provided.
+              Sindhudurg Marketplace operates on an entirely self-contained Local JSON Database Engine (`src/data/database.json`). It requires zero cloud infrastructure, zero database setup, and persists changes directly in local storage with full JSON export and restore capabilities.
             </p>
           </div>
 
@@ -529,22 +528,20 @@ export const AdminDashboard: React.FC = () => {
             <div className="p-4 rounded-2xl bg-sand-50 border border-sand-200 space-y-2">
               <span className="text-xs font-bold text-slate-700 flex items-center gap-2">
                 <Database className="w-4 h-4 text-teal-600" />
-                Connection State
+                Active Storage Engine
               </span>
               <p className="text-sm font-bold text-ocean-950">
-                {isSupabaseConfigured ? '🟢 Live Supabase PostgreSQL Connected' : '🟡 Autonomous Demo Mode Active'}
+                🟢 100% Local JSON Database (Offline & Fast)
               </p>
               <p className="text-xs text-slate-500">
-                {isSupabaseConfigured
-                  ? 'Cloud RLS policies and live database transactions active.'
-                  : 'Operating locally with complete state persistence in localStorage.'}
+                Loaded directly from <code className="bg-sand-200 px-1 py-0.5 rounded text-ocean-900 font-mono">database.json</code> with active browser caching. All new orders, enquiries, and product modifications persist in real time.
               </p>
             </div>
 
             <div className="p-4 rounded-2xl bg-sand-50 border border-sand-200 space-y-2">
               <span className="text-xs font-bold text-slate-700 flex items-center gap-2">
                 <RotateCcw className="w-4 h-4 text-ocean-700" />
-                Demo Seed Reset
+                Reset & Portability
               </span>
               <p className="text-xs text-slate-500">
                 Restore the default realistic Konkan seed products, tourism listings, demo orders, and reviews.
@@ -553,12 +550,12 @@ export const AdminDashboard: React.FC = () => {
                 onClick={() => {
                   if (confirm('Reset marketplace to original demonstration seed data?')) {
                     resetToDemoData();
-                    alert('Seed data restored successfully!');
+                    alert('Seed data restored successfully from database.json!');
                   }
                 }}
                 className="px-3.5 py-1.5 rounded-xl bg-sand-200 hover:bg-sand-300 text-slate-800 text-xs font-semibold transition-colors"
               >
-                Reset Demo Data
+                Reset to Seed JSON
               </button>
             </div>
           </div>

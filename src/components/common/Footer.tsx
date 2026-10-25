@@ -194,7 +194,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, onSelectTaluka }) 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            © {new Date().getFullYear()} Sindhudurg Tourism & Marketplace. Built with React, Tailwind & Supabase.
+            © {new Date().getFullYear()} Sindhudurg Tourism & Marketplace. Built with React, Tailwind & Local JSON Engine.
           </p>
           <div className="flex items-center gap-1 text-slate-400">
             <span>Preserving Konkan Heritage with</span>

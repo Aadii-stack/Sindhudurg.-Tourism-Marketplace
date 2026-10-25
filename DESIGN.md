@@ -38,10 +38,10 @@ Reflecting the Konkan coastline, basalt sea forts, tropical foliage, and Alphons
 ## 3. System Architecture & Component Structure
 
 ### 3.1 Tech Stack
-- **Frontend Framework**: React 18 / 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS v3/v4 utility classes + Lucide React icons
-- **State Management**: React Context (`CartContext`, `AuthContext`, `MarketplaceContext`) with localStorage persistence and Supabase synchronization.
-- **Backend / Database**: Supabase PostgreSQL + Supabase Auth + Supabase Storage (with graceful zero-config Demo Mode fallback).
+- **Frontend Framework**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS utility classes + Lucide React icons
+- **State Management**: React Context (`CartContext`, `AuthContext`, `MarketplaceContext`) with full Local JSON Database synchronization and persistence.
+- **Backend & Storage**: 100% Local JSON Database Engine (`src/data/database.json`) with LocalStorage persistence and JSON Backup/Import/Export. Zero external cloud dependencies, zero Supabase requirement.
 - **Deployment**: Vercel & Docker containerized setup.
 
 ### 3.2 Directory Structure
@@ -57,57 +57,33 @@ ed/
 ├── vite.config.ts
 ├── tsconfig.json
 ├── index.html
-├── supabase/
-│   ├── migrations/
-│   │   └── 20261025_init_schema.sql
-│   └── seed.sql
 ├── src/
 │   ├── assets/
 │   ├── components/
 │   │   ├── common/
 │   │   │   ├── Navbar.tsx
 │   │   │   ├── Footer.tsx
-│   │   │   ├── DemoBanner.tsx
+│   │   │   ├── DemoBanner.tsx (Local JSON Status & Inspector)
 │   │   │   ├── Badge.tsx
 │   │   │   ├── Modal.tsx
 │   │   │   └── NotificationToast.tsx
 │   │   ├── home/
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── CategoryGrid.tsx
-│   │   │   ├── FeaturedProducts.tsx
-│   │   │   ├── TourismSpotlight.tsx
-│   │   │   ├── WhyChooseLocal.tsx
-│   │   │   └── ArtisanStories.tsx
 │   │   ├── products/
-│   │   │   ├── ProductCard.tsx
-│   │   │   ├── ProductFilters.tsx
-│   │   │   └── ProductDetailModal.tsx
 │   │   ├── tourism/
-│   │   │   ├── TourismCard.tsx
-│   │   │   ├── TourismFilters.tsx
-│   │   │   ├── TourismDetailModal.tsx
-│   │   │   └── BookingEnquiryModal.tsx
 │   │   ├── cart/
-│   │   │   ├── CartDrawer.tsx
-│   │   │   └── CheckoutModal.tsx
 │   │   ├── auth/
-│   │   │   └── AuthModal.tsx
 │   │   └── dashboard/
-│   │       ├── UserDashboard.tsx
-│   │       ├── AdminDashboard.tsx
-│   │       └── AddEditProductModal.tsx
 │   ├── context/
-│   │   ├── AuthContext.tsx
+│   │   ├── AuthContext.tsx (Local JSON User Authentication)
 │   │   ├── CartContext.tsx
-│   │   └── MarketplaceContext.tsx
+│   │   └── MarketplaceContext.tsx (Local JSON CRUD Engine)
 │   ├── data/
-│   │   ├── seedData.ts
-│   │   └── sindhudurgInfo.ts
+│   │   ├── database.json (Full Local JSON Database)
+│   │   └── seedData.ts (Typed Schemas & Seed Dataset)
 │   ├── lib/
-│   │   ├── supabaseClient.ts
+│   │   ├── jsonDatabase.ts (Local JSON Storage Manager)
 │   │   └── utils.ts
 │   ├── types/
-│   │   └── index.ts
 │   ├── App.tsx
 │   ├── main.tsx
 │   └── index.css
@@ -115,29 +91,24 @@ ed/
 
 ---
 
-## 4. Data Flow & Database Model
+## 4. Local JSON Database Architecture
 
-### 4.1 Supabase Schema Entity-Relationship
-- **`profiles`**: `id (UUID FK auth.users)`, `full_name`, `phone`, `role ('customer'|'seller'|'admin')`, `avatar_url`, `created_at`.
-- **`sellers`**: `id (UUID)`, `user_id (FK profiles)`, `business_name`, `taluka` (Malvan, Sawantwadi, Vengurla, Kudal, Kankavli, Devgad), `specialty`, `phone`, `story`, `verified (boolean)`.
-- **`product_categories`**: `id (UUID)`, `name`, `slug`, `icon`, `description`.
-- **`products`**: `id (UUID)`, `seller_id (FK sellers)`, `category_id (FK product_categories)`, `name`, `slug`, `description`, `price_inr`, `unit`, `stock_quantity`, `is_active`, `origin_taluka`, `image_url`, `is_featured`, `created_at`.
-- **`tourism_listings`**: `id (UUID)`, `seller_id (FK sellers)`, `title`, `category ('fort'|'water_sports'|'homestay'|'culture'|'nature')`, `location_taluka`, `duration`, `price_indicative_inr`, `description`, `highlights (text[])`, `image_url`, `is_active`, `created_at`.
-- **`orders`**: `id (UUID)`, `user_id (FK profiles)`, `order_code`, `customer_name`, `customer_email`, `customer_phone`, `shipping_address`, `total_amount_inr`, `status ('pending'|'confirmed'|'dispatched'|'delivered')`, `created_at`.
-- **`order_items`**: `id (UUID)`, `order_id (FK orders)`, `product_id (FK products)`, `quantity`, `price_at_purchase_inr`.
-- **`tourism_enquiries`**: `id (UUID)`, `user_id (FK profiles)`, `listing_id (FK tourism_listings)`, `customer_name`, `customer_email`, `customer_phone`, `preferred_date`, `guests_count`, `notes`, `status ('received'|'contacted'|'closed')`, `created_at`.
-- **`favorites`**: `id (UUID)`, `user_id (FK profiles)`, `item_type ('product'|'tourism')`, `item_id (UUID)`, `created_at`.
+### 4.1 JSON Data Models (`database.json`)
+The complete system is powered by structured, relational-like JSON entities:
+- **`profiles`**: User profiles with roles (`customer`, `seller`, `admin`).
+- **`sellers`**: Verified local producer profiles, taluka affiliation, and ratings.
+- **`categories`**: Product taxonomy (Devgad mangoes, cashews, kokum, wooden crafts, masalas).
+- **`products`**: Catalog items with price (INR), stock, taluka, GI tag, and images.
+- **`tourism`**: Heritage fort walks, scuba diving, homestays, and craft workshops.
+- **`orders`**: Tracked order objects with generated code (`SDG-XXXXXX`), customer details, and item breakdowns.
+- **`enquiries`**: Direct tourism bookings and scheduling requests.
+- **`favorites`**: Saved product and experience IDs.
 
-### 4.2 Row Level Security (RLS) Strategy
-- Anyone (anon + authenticated) can `SELECT` active products and active tourism listings.
-- Authenticated users can insert their own orders and enquiries, and view their own records.
-- Sellers and Admins can update/insert products and listings linked to their seller ID or as system admins.
-
-### 4.3 Hybrid Online & Offline Resilience (Zero-Config First Run)
-When `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are not set in `.env`, the client initializes in **Autonomous Demo Mode**:
-- Loads verified seed data directly from `src/data/seedData.ts`.
-- Persists cart, new orders, mock enquiries, and newly created admin products into browser `localStorage`.
-- Allows instant evaluation without blockers, complete with an indicator badge explaining the setup.
+### 4.2 Local Persistence & Portability
+- Real-time updates stored in browser storage and local JSON runtime.
+- Built-in JSON Export / Import tool to save the database as `sindhudurg-data.json` and load custom data at any time.
+- Reset to factory Konkan seed data button for consistent evaluator demonstrations.
+- Completely self-contained: works offline and in any environment without internet or database connection.
 
 ---
 
