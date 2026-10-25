@@ -18,7 +18,7 @@ export const NotificationToast: React.FC = () => {
   if (!lastAddedItem) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed bottom-6 right-6 z-50 animate-toast-enter">
       <div className="bg-ocean-950 text-white rounded-2xl p-4 shadow-2xl border border-ocean-800 flex items-center gap-3.5 max-w-sm">
         <img
           src={lastAddedItem.imageUrl}

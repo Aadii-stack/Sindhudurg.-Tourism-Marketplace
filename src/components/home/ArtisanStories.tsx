@@ -35,7 +35,7 @@ export const ArtisanStories: React.FC<ArtisanStoriesProps> = ({ onSelectSeller }
             <article
               key={seller.id}
               onClick={() => onSelectSeller && onSelectSeller(seller.id)}
-              className="group bg-white rounded-2xl border border-sand-200/90 p-5 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-4 cursor-pointer"
+              className="group bg-white rounded-2xl border border-sand-200/90 p-5 shadow-2xs hover:shadow-lg card-hover-lift flex flex-col justify-between space-y-4 cursor-pointer"
             >
               <div className="space-y-3.5">
                 {/* Photo with subtle border */}
@@ -43,7 +43,7 @@ export const ArtisanStories: React.FC<ArtisanStoriesProps> = ({ onSelectSeller }
                   <img
                     src={seller.avatarUrl}
                     alt={seller.ownerName}
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute top-2.5 right-2.5 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold text-teal-800 flex items-center gap-1 shadow-2xs">
                     <CheckCircle2 className="w-3 h-3 text-teal-600" />

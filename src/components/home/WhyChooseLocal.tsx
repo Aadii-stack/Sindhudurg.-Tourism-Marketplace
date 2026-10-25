@@ -54,7 +54,7 @@ export const WhyChooseLocal: React.FC<WhyChooseLocalProps> = ({ onLearnMore }) =
           {pillars.map((item, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-2xl bg-sand-50/70 border border-sand-200/80 space-y-3 flex flex-col justify-between"
+              className="p-8 rounded-2xl bg-sand-50/70 border border-sand-200/80 space-y-3 flex flex-col justify-between card-hover-lift hover:bg-white hover:border-sand-300 transition-all duration-300"
             >
               <div className="space-y-2">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-teal-800 font-bold block">

@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { ProductCard } from '../products/ProductCard';
 import { ProductDetailModal } from '../products/ProductDetailModal';
+import { ScrollReveal } from '../common/ScrollReveal';
 import { Product } from '../../types';
 
 interface FeaturedProductsProps {
@@ -42,14 +43,15 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onViewAll })
         </button>
       </div>
 
-      {/* Grid */}
+      {/* Grid with Staggered Delays */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {featured.map((p) => (
-          <ProductCard
-            key={p.id}
-            product={p}
-            onQuickView={(item) => setSelectedProduct(item)}
-          />
+        {featured.map((p, idx) => (
+          <ScrollReveal key={p.id} animation="fade-up" delay={idx * 100} duration={600}>
+            <ProductCard
+              product={p}
+              onQuickView={(item) => setSelectedProduct(item)}
+            />
+          </ScrollReveal>
         ))}
       </div>
 

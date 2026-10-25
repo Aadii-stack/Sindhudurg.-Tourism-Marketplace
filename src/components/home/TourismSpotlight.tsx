@@ -4,6 +4,7 @@ import { useMarketplace } from '../../context/MarketplaceContext';
 import { TourismCard } from '../tourism/TourismCard';
 import { TourismDetailModal } from '../tourism/TourismDetailModal';
 import { BookingEnquiryModal } from '../tourism/BookingEnquiryModal';
+import { ScrollReveal } from '../common/ScrollReveal';
 import { TourismListing } from '../../types';
 
 interface TourismSpotlightProps {
@@ -45,15 +46,16 @@ export const TourismSpotlight: React.FC<TourismSpotlightProps> = ({ onViewAllTou
           </button>
         </div>
 
-        {/* 3 Column Grid */}
+        {/* 3 Column Grid with Staggered Delays */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featured.map((listing) => (
-            <TourismCard
-              key={listing.id}
-              listing={listing}
-              onViewDetails={(item) => setSelectedListing(item)}
-              onEnquire={(item) => setEnquiryListing(item)}
-            />
+          {featured.map((listing, idx) => (
+            <ScrollReveal key={listing.id} animation="fade-up" delay={idx * 120} duration={650}>
+              <TourismCard
+                listing={listing}
+                onViewDetails={(item) => setSelectedListing(item)}
+                onEnquire={(item) => setEnquiryListing(item)}
+              />
+            </ScrollReveal>
           ))}
         </div>
 

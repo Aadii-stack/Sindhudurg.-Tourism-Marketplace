@@ -43,12 +43,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onProceedCheckout }) => 
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs transition-opacity animate-fade-in"
         onClick={closeCart}
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
+        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between animate-drawer-slide">
           
           {/* Header */}
           <div className="p-5 border-b border-sand-200 flex items-center justify-between bg-sand-50/70">

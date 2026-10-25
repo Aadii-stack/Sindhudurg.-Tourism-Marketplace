@@ -33,6 +33,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { favorites, searchQuery, setSearchQuery } = useMarketplace();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (scrollY / totalHeight) * 100)));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -42,7 +59,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-sand-200 transition-all shadow-sm">
+    <header className={`sticky top-0 z-40 transition-all duration-300 ${
+      isScrolled
+        ? 'bg-white/95 backdrop-blur-md border-b border-sand-200/90 shadow-sm'
+        : 'bg-sand-50/90 backdrop-blur-xs border-b border-sand-200/50'
+    }`}>
+      {/* Scroll Progress Indicator */}
+      <div
+        className="absolute top-0 left-0 h-[2.5px] bg-gradient-to-r from-ocean-800 via-teal-600 to-mango-500 transition-all duration-100 ease-out z-50"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           

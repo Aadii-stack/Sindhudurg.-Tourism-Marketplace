@@ -3,6 +3,7 @@ import { Search, Filter, SlidersHorizontal, Sparkles, MapPin, X } from 'lucide-r
 import { useMarketplace } from '../../context/MarketplaceContext';
 import { ProductCard } from './ProductCard';
 import { ProductDetailModal } from './ProductDetailModal';
+import { ScrollReveal } from '../common/ScrollReveal';
 import { Product, Taluka } from '../../types';
 
 const TALUKAS: { label: string; value: string }[] = [
@@ -205,15 +206,21 @@ export const ProductCatalogue: React.FC = () => {
         )}
       </div>
 
-      {/* Product Cards Grid */}
+      {/* Product Cards Grid with Staggered Fade */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard
+          {filteredProducts.map((product, idx) => (
+            <ScrollReveal
               key={product.id}
-              product={product}
-              onQuickView={(p) => setSelectedProduct(p)}
-            />
+              animation="fade-up"
+              delay={Math.min(idx * 60, 360)}
+              duration={500}
+            >
+              <ProductCard
+                product={product}
+                onQuickView={(p) => setSelectedProduct(p)}
+              />
+            </ScrollReveal>
           ))}
         </div>
       ) : (

@@ -30,7 +30,7 @@ export const TourismCard: React.FC<TourismCardProps> = ({
   onEnquire
 }) => {
   return (
-    <article className="group bg-white rounded-2xl border border-sand-200/90 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+    <article className="group bg-white rounded-2xl border border-sand-200/90 overflow-hidden shadow-2xs hover:shadow-lg card-hover-lift flex flex-col justify-between">
       
       {/* Top Image Canvas */}
       <div
@@ -40,7 +40,7 @@ export const TourismCard: React.FC<TourismCardProps> = ({
         <img
           src={listing.imageUrl}
           alt={listing.title}
-          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ocean-950/75 via-transparent to-transparent" />
@@ -129,7 +129,7 @@ export const TourismCard: React.FC<TourismCardProps> = ({
             </button>
             <button
               onClick={() => onEnquire(listing)}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-900 hover:bg-ocean-800 flex items-center gap-1.5 shadow-xs transition-all duration-150 active:scale-95"
+              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-950 hover:bg-ocean-900 flex items-center gap-1.5 shadow-xs btn-tactile"
             >
               <Send className="w-3.5 h-3.5 text-mango-400" />
               <span>Enquire</span>

@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isFav = isFavorite(product.id);
 
   return (
-    <article className="group bg-white rounded-2xl border border-sand-200/90 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+    <article className="group bg-white rounded-2xl border border-sand-200/90 overflow-hidden shadow-2xs hover:shadow-lg card-hover-lift flex flex-col justify-between">
       
       {/* Visual Canvas with Subtle Heart Toggle */}
       <div
@@ -29,7 +29,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80';
@@ -115,10 +115,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={() => addToCart(product, 1)}
             disabled={product.stockQuantity === 0}
-            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all duration-150 active:scale-95 ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 btn-tactile ${
               product.stockQuantity === 0
                 ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                : 'bg-ocean-900 hover:bg-ocean-800 text-white shadow-xs'
+                : 'bg-ocean-950 hover:bg-ocean-900 text-white shadow-xs'
             }`}
           >
             <ShoppingBag className="w-3.5 h-3.5 text-mango-400" />

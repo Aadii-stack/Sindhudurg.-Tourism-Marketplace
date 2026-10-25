@@ -5,6 +5,7 @@ import { FeaturedProducts } from './FeaturedProducts';
 import { TourismSpotlight } from './TourismSpotlight';
 import { WhyChooseLocal } from './WhyChooseLocal';
 import { ArtisanStories } from './ArtisanStories';
+import { ScrollReveal } from '../common/ScrollReveal';
 
 interface HomePageProps {
   onNavigateTab: (tab: string) => void;
@@ -17,41 +18,51 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   return (
     <div className="space-y-4">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (Immediate Presence) */}
       <HeroSection
         onExploreProducts={() => onNavigateTab('products')}
         onExploreTourism={() => onNavigateTab('tourism')}
         onSelectCategory={onSelectCategory}
       />
 
-      {/* 2. Visual Categories Breakdown */}
-      <CategoryGrid
-        onSelectCategory={(cat) => {
-          onSelectCategory(cat);
-          onNavigateTab('products');
-        }}
-        onSelectTourism={() => onNavigateTab('tourism')}
-      />
+      {/* 2. Visual Categories Directory (Scroll Reveal) */}
+      <ScrollReveal animation="fade-up" duration={700}>
+        <CategoryGrid
+          onSelectCategory={(cat) => {
+            onSelectCategory(cat);
+            onNavigateTab('products');
+          }}
+          onSelectTourism={() => onNavigateTab('tourism')}
+        />
+      </ScrollReveal>
 
       {/* 3. Featured Local Produce & Crafts */}
-      <FeaturedProducts
-        onViewAll={() => onNavigateTab('products')}
-      />
+      <ScrollReveal animation="fade-up" duration={700}>
+        <FeaturedProducts
+          onViewAll={() => onNavigateTab('products')}
+        />
+      </ScrollReveal>
 
       {/* 4. Tourism Expeditions Spotlight */}
-      <TourismSpotlight
-        onViewAllTourism={() => onNavigateTab('tourism')}
-      />
+      <ScrollReveal animation="fade-up" duration={700}>
+        <TourismSpotlight
+          onViewAllTourism={() => onNavigateTab('tourism')}
+        />
+      </ScrollReveal>
 
       {/* 5. Why Choose Local Section */}
-      <WhyChooseLocal
-        onLearnMore={() => onNavigateTab('admin')}
-      />
+      <ScrollReveal animation="fade-up" duration={700}>
+        <WhyChooseLocal
+          onLearnMore={() => onNavigateTab('admin')}
+        />
+      </ScrollReveal>
 
       {/* 6. Meet The Artisans & Guides */}
-      <ArtisanStories
-        onSelectSeller={() => onNavigateTab('sellers')}
-      />
+      <ScrollReveal animation="fade-up" duration={700}>
+        <ArtisanStories
+          onSelectSeller={() => onNavigateTab('sellers')}
+        />
+      </ScrollReveal>
     </div>
   );
 };

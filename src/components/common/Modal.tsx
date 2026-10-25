@@ -56,14 +56,14 @@ export const Modal: React.FC<ModalProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-fade-in"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal Card */}
       <div
-        className={`relative w-full ${maxWidthMap[maxWidth]} my-6 bg-white rounded-2xl shadow-2xl border border-sand-200 overflow-hidden z-10 transform transition-all animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col`}
+        className={`relative w-full ${maxWidthMap[maxWidth]} my-6 bg-white rounded-2xl shadow-2xl border border-sand-200 overflow-hidden z-10 animate-modal-enter max-h-[90vh] flex flex-col`}
       >
         {/* Header */}
         {(title || subtitle) && (

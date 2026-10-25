@@ -110,7 +110,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({
                   onSelectCategory(cat.slug);
                 }
               }}
-              className="group p-6 lg:p-7 hover:bg-sand-50/80 transition-colors duration-150 cursor-pointer flex flex-col justify-between min-h-[190px]"
+              className="group p-6 lg:p-7 hover:bg-sand-50/90 transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[190px]"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
@@ -130,8 +130,8 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({
               </div>
 
               <div className="pt-4 flex items-center justify-end">
-                <div className="w-7 h-7 rounded-full bg-sand-100 group-hover:bg-ocean-900 group-hover:text-white flex items-center justify-center text-slate-600 transition-all duration-150">
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                <div className="w-7 h-7 rounded-full bg-sand-100 group-hover:bg-ocean-950 group-hover:text-white flex items-center justify-center text-slate-600 transition-all duration-200 group-hover:scale-105">
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                 </div>
               </div>
             </div>

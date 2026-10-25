@@ -4,6 +4,7 @@ import { useMarketplace } from '../../context/MarketplaceContext';
 import { TourismCard } from './TourismCard';
 import { TourismDetailModal } from './TourismDetailModal';
 import { BookingEnquiryModal } from './BookingEnquiryModal';
+import { ScrollReveal } from '../common/ScrollReveal';
 import { TourismListing, TourismCategory, Taluka } from '../../types';
 
 const CATEGORIES: { label: string; value: TourismCategory | 'all' }[] = [
@@ -126,16 +127,22 @@ export const TourismCatalogue: React.FC = () => {
         </div>
       </div>
 
-      {/* Listings Grid */}
+      {/* Listings Grid with Staggered Delays */}
       {filteredListings.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredListings.map((listing) => (
-            <TourismCard
+          {filteredListings.map((listing, idx) => (
+            <ScrollReveal
               key={listing.id}
-              listing={listing}
-              onViewDetails={(item) => setActiveDetailListing(item)}
-              onEnquire={(item) => setActiveEnquiryListing(item)}
-            />
+              animation="fade-up"
+              delay={Math.min(idx * 80, 400)}
+              duration={550}
+            >
+              <TourismCard
+                listing={listing}
+                onViewDetails={(item) => setActiveDetailListing(item)}
+                onEnquire={(item) => setActiveEnquiryListing(item)}
+              />
+            </ScrollReveal>
           ))}
         </div>
       ) : (
