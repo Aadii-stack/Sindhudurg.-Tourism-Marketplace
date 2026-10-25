@@ -72,20 +72,21 @@ export const ProductCatalogue: React.FC = () => {
   return (
     <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      {/* Header Banner */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-ocean-950 via-ocean-900 to-teal-900 text-white p-6 sm:p-10 shadow-lg overflow-hidden">
-        <div className="relative z-10 max-w-2xl space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-mango-400 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
-            Konkan Authentic Marketplace
+      {/* Editorial Header */}
+      <div className="border-b border-sand-200/90 pb-8 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono uppercase tracking-widest text-slate-500">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-teal-600 inline-block"></span>
+            Konkan Geographic Registry • District 416812
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif tracking-tight">
-            Sindhudurg Local Treasures
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Directly from GI-certified orchards, multi-generational master lacquer artisans, and women-led spice cooperatives across all 8 talukas.
-          </p>
+          <span>8 Talukas • Verified Farm Origin</span>
         </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-ocean-950 tracking-tight">
+          Native Harvest & Craft Marketplace
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+          Authentic GI-certified Devgad Alphonso mangoes, Sawantwadi royal lacquerware, Vengurla coastal cashews, and wild forest Kokum — direct from primary producers.
+        </p>
       </div>
 
       {/* Filter and Control Bar */}

@@ -116,8 +116,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   100% Organic
                 </span>
               )}
-              <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-                Academic Demo Data
+              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-sand-100 text-slate-700 border border-sand-200">
+                Verified Provenance
               </span>
             </div>
 
@@ -207,8 +207,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </button>
             </div>
 
-            <p className="text-[11px] text-slate-400 text-center">
-              Sample product for ED evaluation. Mock checkout requires no credit card.
+            <p className="text-[11px] text-slate-400 text-center font-light">
+              Packed in eco-friendly protective cartons directly from Sindhudurg orchards and workshops.
             </p>
           </div>
 

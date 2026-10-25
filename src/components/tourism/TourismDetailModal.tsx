@@ -124,13 +124,13 @@ export const TourismDetailModal: React.FC<TourismDetailModalProps> = ({
           </div>
         )}
 
-        {/* Demo Disclaimer & Provider Info */}
-        <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2">
-          <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-bold">Educational Demonstration Listing:</span>
-            <p className="mt-0.5 text-amber-800">
-              Provider partnerships and exact seasonal timings are demonstrative. Submitting an enquiry creates an interactive demo booking record inside your student/evaluator dashboard.
+        {/* Seasonal Advisory & Safety Protocol */}
+        <div className="p-3.5 bg-sand-50 rounded-xl border border-sand-200 text-xs text-slate-700 flex items-start gap-2.5">
+          <AlertCircle className="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
+          <div className="space-y-0.5">
+            <span className="font-bold text-ocean-950">Seasonal Coastal &amp; Maritime Advisory:</span>
+            <p className="text-[11px] text-slate-500 leading-relaxed font-light">
+              Marine conditions are subject to Arabian Sea tide cycles and MTDC coastal safety clearances. Advance enquiry confirms slot availability directly with certified local navigators.
             </p>
           </div>
         </div>

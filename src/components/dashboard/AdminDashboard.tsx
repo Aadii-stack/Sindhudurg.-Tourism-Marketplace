@@ -60,17 +60,17 @@ export const AdminDashboard: React.FC = () => {
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={() => switchDemoRole('seller')}
-            className="px-5 py-2.5 rounded-xl bg-ocean-900 text-white font-semibold text-xs hover:bg-ocean-800 flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-ocean-950 text-sand-50 font-semibold text-xs hover:bg-ocean-900 flex items-center gap-2 transition-colors"
           >
             <Store className="w-4 h-4 text-mango-400" />
-            <span>Switch to Local Seller (Demo)</span>
+            <span>Switch to Local Seller</span>
           </button>
           <button
             onClick={() => switchDemoRole('admin')}
-            className="px-5 py-2.5 rounded-xl bg-sand-200 text-slate-800 font-semibold text-xs hover:bg-sand-300 flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-sand-200 text-slate-800 font-semibold text-xs hover:bg-sand-300 flex items-center gap-2 transition-colors"
           >
             <Shield className="w-4 h-4 text-ocean-700" />
-            <span>Switch to Platform Admin (Demo)</span>
+            <span>Switch to Platform Admin</span>
           </button>
         </div>
       </div>
@@ -219,7 +219,7 @@ export const AdminDashboard: React.FC = () => {
               : 'text-slate-500 hover:text-slate-900'
           }`}
         >
-          Cloud & Maintenance
+          Storage Engine & Health
         </button>
       </div>
 

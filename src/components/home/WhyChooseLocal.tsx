@@ -8,86 +8,84 @@ interface WhyChooseLocalProps {
 export const WhyChooseLocal: React.FC<WhyChooseLocalProps> = ({ onLearnMore }) => {
   const pillars = [
     {
-      icon: HeartHandshake,
-      title: 'Direct Farmer & Artisan Prosperity',
-      description: 'Eliminates predatory commercial middlemen layers, ensuring up to 85% of each sale flows directly into rural household economies in Devgad and Sawantwadi.',
-      accent: 'text-mango-600 bg-mango-50 border-mango-200'
+      label: 'Direct Agricultural Equity',
+      heading: '85% Value Retention by Village Households',
+      description: 'Traditional urban agricultural distribution chains absorb up to 50% in distributor margins. Direct patron connectivity ensures fair living wages for coastal orchardists in Devgad and spice growers in Malvan.'
     },
     {
-      icon: ShieldCheck,
-      title: 'Protected GI-Tag Authenticity',
-      description: 'Counterfeiting is prevalent in urban markets. Every Alphonso box and wooden craft is tracked to verified soil in Sindhudurg under Geographical Indication regulations.',
-      accent: 'text-teal-700 bg-teal-50 border-teal-200'
+      label: 'Geographical Indication Protection',
+      heading: 'Defending Centuries-Old Provenance',
+      description: 'Devgad Alphonso and Sawantwadi Lacquerware hold legally protected GI status. Purchasing directly preserves traditional grafting knowledge and prevents synthetic counterfeits from degrading the heritage.'
     },
     {
-      icon: Leaf,
-      title: 'Zero Chemical Ripening Agents',
-      description: 'Naturally straw-ripened Alphonso mangoes and wild-harvested Kokum agal with rock salt. Free from harmful calcium carbide gases and synthetic preservatives.',
-      accent: 'text-emerald-700 bg-emerald-50 border-emerald-200'
+      label: 'Organic Purity & Natural Ripening',
+      heading: 'Zero Calcium Carbide Gas',
+      description: 'Commercial brokers artificially force ripening with hazardous chemical agents. Konkan producers rely on traditional hay bedding and tree ripening for safe, fragrant, unadulterated fruit.'
     },
     {
-      icon: Anchor,
-      title: 'Eco-Certified Marine Tourism',
-      description: 'Our licensed scuba operators adhere to reef preservation protocols around Malvan marine sanctuaries, empowering coastal boatmen with sustainable livelihoods.',
-      accent: 'text-ocean-700 bg-ocean-50 border-ocean-200'
+      label: 'Regenerative Marine Stewardship',
+      heading: 'Empowering Certified Local Navigators',
+      description: 'Tarkarli and Malvan boatmen operate licensed, low-impact expeditions committed to coral reef preservation, marine safety, and respectful engagement with historic Maratha sea bastions.'
     }
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-20 sm:py-24 bg-white border-b border-sand-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-teal-700">
-            Conscious Commerce & Heritage
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-ocean-950 font-serif tracking-tight">
-            Why Choose Local Sindhudurg?
+        {/* Editorial Section Header */}
+        <div className="max-w-3xl space-y-3">
+          <div className="flex items-center gap-2.5">
+            <span className="w-5 h-[1px] bg-teal-800" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-800">
+              Community Mandate &amp; Stewardship
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-ocean-950 font-serif tracking-tight leading-tight">
+            Why Local Provenance Matters in Sindhudurg.
           </h2>
-          <p className="text-sm text-slate-500 leading-relaxed">
-            Every mango ordered and every sea fort tour booked sustains a centuries-old Konkan community tradition.
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">
+            Every mango crate dispatched, wooden toy carved, and diving excursion guided directly sustains an indigenous coastal ecology and preserves living history.
           </p>
         </div>
 
-        {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pillars.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="p-6 rounded-3xl bg-sand-50/70 border border-sand-200 space-y-4 hover:shadow-md transition-shadow"
-              >
-                <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center ${item.accent}`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-base font-bold text-ocean-950 font-serif leading-snug">
-                  {item.title}
+        {/* 4 Pillars in Clean 2x2 Architectural Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {pillars.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-8 rounded-2xl bg-sand-50/70 border border-sand-200/80 space-y-3 flex flex-col justify-between"
+            >
+              <div className="space-y-2">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-teal-800 font-bold block">
+                  Pillar 0{idx + 1} • {item.label}
+                </span>
+                <h3 className="text-lg font-bold text-ocean-950 font-serif leading-snug">
+                  {item.heading}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light pt-1">
                   {item.description}
                 </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* Highlight Banner */}
-        <div className="rounded-3xl bg-gradient-to-r from-ocean-950 to-teal-950 p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-left">
+        {/* Quiet Patron Callout */}
+        <div className="p-8 rounded-2xl bg-ocean-950 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-1 max-w-xl">
             <h4 className="text-lg font-bold font-serif">
-              Are you a local producer, homestay host, or boat guide?
+              Represent a Konkan agricultural collective or marine guild?
             </h4>
-            <p className="text-xs text-slate-300">
-              Join the Sindhudurg digital initiative to list your harvest and tours with zero onboarding friction.
+            <p className="text-xs text-slate-300 font-light leading-relaxed">
+              Register verified orchard harvests or coastal expeditions directly through the local cooperative portal.
             </p>
           </div>
           <button
             onClick={onLearnMore}
-            className="px-6 py-3 rounded-xl bg-mango-500 hover:bg-mango-400 text-slate-950 font-bold text-xs shadow-md transition-colors whitespace-nowrap"
+            className="px-5 py-3 rounded-xl bg-white hover:bg-sand-100 text-ocean-950 font-semibold text-xs tracking-wide transition-all duration-150 active:scale-95 shrink-0"
           >
-            Explore Seller Portal
+            Access Producer Portal
           </button>
         </div>
 

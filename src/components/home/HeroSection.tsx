@@ -4,12 +4,10 @@ import {
   ArrowRight,
   ShieldCheck,
   Award,
-  Sparkles,
   MapPin,
   Waves,
   ShoppingBag
 } from 'lucide-react';
-import { useMarketplace } from '../../context/MarketplaceContext';
 
 interface HeroSectionProps {
   onExploreProducts: () => void;
@@ -22,172 +20,136 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreTourism,
   onSelectCategory
 }) => {
-  const { searchQuery, setSearchQuery } = useMarketplace();
-
-  const quickPills = [
-    { label: '🥭 Devgad Hapus', slug: 'alphonso-mangoes', isProduct: true },
-    { label: '🤿 Tarkarli Scuba', slug: 'water_sports', isProduct: false },
-    { label: '🪵 Wooden Toys', slug: 'wooden-handicrafts', isProduct: true },
-    { label: '🍷 Wild Kokum Agal', slug: 'kokum-beverages', isProduct: true },
-    { label: '🏰 Sindhudurg Fort', slug: 'fort', isProduct: false },
+  const curatedTags = [
+    { label: 'Devgad Hapus (GI)', slug: 'alphonso-mangoes', isProduct: true },
+    { label: 'Tarkarli Reef Diving', slug: 'water_sports', isProduct: false },
+    { label: 'Sawantwadi Lacquerware', slug: 'wooden-handicrafts', isProduct: true },
+    { label: 'Pure Kokum Agal', slug: 'kokum-beverages', isProduct: true },
+    { label: 'Sindhudurg Bastions', slug: 'fort', isProduct: false },
   ];
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24">
-      {/* Background Subtle Gradient & Accents */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-ocean-100/60 via-sand-50/70 to-sand-50" />
-      
+    <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 bg-sand-50/70 border-b border-sand-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Text & CTA (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          {/* Left Editorial Narrative (7 cols) */}
+          <div className="lg:col-span-7 space-y-8 text-left">
             
-            {/* Regional Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-100/90 border border-sand-300 text-ocean-900 text-xs font-semibold shadow-xs">
-              <span className="flex h-2 w-2 rounded-full bg-mango-500 animate-pulse" />
-              <span>Maharashtra&apos;s First Tourism District</span>
-              <span className="text-slate-400">•</span>
-              <span className="text-teal-700 font-bold">Sindhudurg</span>
+            {/* Architectural District Provenance */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-6 h-[1px] bg-ocean-900" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-ocean-900">
+                Sindhudurg District • Konkan Coastline
+              </span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-ocean-950 font-serif tracking-tight leading-[1.15]">
-              Discover the <br className="hidden sm:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-ocean-900 via-teal-800 to-mango-600">
-                Soul of Sindhudurg.
-              </span>
-            </h1>
+            {/* Headline with Gravitas */}
+            <div className="space-y-3">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-ocean-950 font-serif tracking-tight leading-[1.08]">
+                Authentic Konkan Harvests &amp; Maritime Expeditions.
+              </h1>
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal">
+                Connecting discerning patrons directly with GI-certified Devgad orchardists, 300-year-old Sawantwadi royal lacquer guilds, and licensed Malvan coral reef navigators.
+              </p>
+            </div>
 
-            {/* Subheading */}
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-              Shop Konkan&apos;s authentic local treasures—naturally ripened Devgad Alphonso mangoes, centuries-old Sawantwadi wooden crafts, pure Kokum agal—and discover unforgettable coastal sea fort experiences.
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Dual Actions with Tactile States */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={onExploreProducts}
-                className="px-6 py-3.5 rounded-xl bg-ocean-900 hover:bg-ocean-800 text-white font-semibold text-sm sm:text-base shadow-lg shadow-ocean-900/15 flex items-center gap-2 group transition-all"
+                className="px-6 py-3.5 rounded-xl bg-ocean-900 hover:bg-ocean-800 active:scale-[0.98] text-white font-medium text-sm shadow-sm flex items-center gap-2.5 transition-all duration-150"
               >
-                <ShoppingBag className="w-5 h-5 text-mango-400" />
-                <span>Shop Local Treasures</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ShoppingBag className="w-4 h-4 text-mango-400" />
+                <span>Shop Regional Goods</span>
+                <ArrowRight className="w-4 h-4 text-slate-300" />
               </button>
 
               <button
                 onClick={onExploreTourism}
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-sand-100 text-ocean-950 border border-sand-300 font-semibold text-sm sm:text-base shadow-sm flex items-center gap-2 transition-all"
+                className="px-6 py-3.5 rounded-xl bg-white hover:bg-sand-100 active:scale-[0.98] text-ocean-950 border border-sand-300 font-medium text-sm shadow-2xs flex items-center gap-2.5 transition-all duration-150"
               >
-                <Compass className="w-5 h-5 text-teal-600" />
-                <span>Explore Tourism</span>
+                <Compass className="w-4 h-4 text-teal-700" />
+                <span>Discover Experiences</span>
               </button>
             </div>
 
-            {/* Quick Keyword Search Tags */}
-            <div className="pt-4 space-y-2">
-              <span className="text-xs font-medium text-slate-500 block">
-                Popular in Sindhudurg:
+            {/* Editorial Provenance Tags (Clean, No AI Emojis) */}
+            <div className="pt-2 border-t border-sand-200/80 space-y-2.5">
+              <span className="text-[11px] font-bold tracking-wider uppercase text-slate-500 block">
+                Signature Provenance:
               </span>
               <div className="flex flex-wrap gap-2">
-                {quickPills.map((pill) => (
+                {curatedTags.map((tag) => (
                   <button
-                    key={pill.slug}
+                    key={tag.slug}
                     onClick={() => {
-                      if (pill.isProduct) {
-                        onSelectCategory(pill.slug);
+                      if (tag.isProduct) {
+                        onSelectCategory(tag.slug);
                         onExploreProducts();
                       } else {
                         onExploreTourism();
                       }
                     }}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-white/90 hover:bg-sand-100 text-slate-700 border border-sand-200 shadow-xs transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-sand-100 hover:border-ocean-300 text-slate-700 border border-sand-200 transition-colors duration-150 font-medium"
                   >
-                    {pill.label}
+                    {tag.label}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-sand-200 text-xs text-slate-600">
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-mango-600 shrink-0" />
-                <span>100% GI Tagged Devgad Hapus</span>
+            {/* Institutional Credentials */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs text-slate-600">
+              <div className="flex items-center gap-2.5">
+                <Award className="w-4 h-4 text-ocean-800 shrink-0" />
+                <span className="font-medium">Geographical Indication Protected</span>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-teal-600 shrink-0" />
-                <span>Zero Middleman Exploitation</span>
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-teal-700 shrink-0" />
+                <span className="font-medium">Direct Producer Collective</span>
               </div>
-              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                <Waves className="w-4 h-4 text-ocean-600 shrink-0" />
-                <span>PADI Certified Scuba Guides</span>
+              <div className="flex items-center gap-2.5">
+                <Waves className="w-4 h-4 text-ocean-700 shrink-0" />
+                <span className="font-medium">PADI Certified Guides</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Visual Image Showcase (5 cols) */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Right Visual Photographic Canvas (5 cols) */}
+          <div className="lg:col-span-5">
+            <div className="relative">
               
-              {/* Primary Image Card: Sindhudurg Sea Fort / Coastal Coast */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 aspect-[4/5] group">
+              {/* Main Architectural Visual */}
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-sand-300/80 bg-ocean-950 aspect-[4/5] group">
                 <img
-                  src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1000&q=80"
-                  alt="Sindhudurg Coastal Waters & Sea Fort"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80"
+                  alt="Sindhudurg Fort Ramparts"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ocean-950/80 via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/20 to-transparent" />
                 
-                {/* Overlay Text */}
-                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                  <span className="text-[11px] font-bold tracking-wider uppercase text-mango-400 flex items-center gap-1">
+                {/* Quiet Caption Plate */}
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase text-mango-400">
                     <MapPin className="w-3.5 h-3.5" />
-                    Sindhudurg Fort • 1664 CE
-                  </span>
-                  <h3 className="text-xl font-bold font-serif leading-tight">
-                    Chhatrapati Shivaji Maharaj&apos;s Maratha Sea Stronghold
+                    <span>Kurte Island, Malvan</span>
+                  </div>
+                  <h3 className="text-xl font-bold font-serif leading-snug">
+                    Sindhudurg Sea Fort (1664 CE)
                   </h3>
-                  <p className="text-xs text-slate-200 line-clamp-2">
-                    Surrounded by pristine coral shoals and tranquil azure waters of Malvan.
+                  <p className="text-xs text-slate-300 leading-relaxed font-light">
+                    Engineering marvel of 44 basalt bastions founded directly in Arabian Sea bedrock.
                   </p>
                 </div>
               </div>
 
-              {/* Floating Badge Card 1: Alphonso Box */}
-              <div className="absolute -bottom-6 -left-6 sm:-left-8 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-sand-200 max-w-[210px] hidden sm:flex items-center gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=150&q=80"
-                  alt="Devgad Alphonso"
-                  className="w-12 h-12 rounded-xl object-cover shrink-0"
-                />
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-mango-600 block">
-                    Fresh Harvest
-                  </span>
-                  <p className="text-xs font-bold text-slate-800 leading-tight">
-                    Devgad Grade A Hapus
-                  </p>
-                  <p className="text-[11px] text-teal-700 font-semibold">
-                    ₹1,250 / dozen
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating Badge Card 2: Scuba Diving */}
-              <div className="absolute -top-6 -right-4 sm:-right-6 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-sand-200 hidden sm:flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700">
-                  <Waves className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-ocean-950">
-                    Tarkarli Scuba
-                  </p>
-                  <p className="text-[10px] text-slate-500 font-medium">
-                    Certified Dive Masters
-                  </p>
-                </div>
+              {/* Discreet Editorial Footnote Tag */}
+              <div className="mt-3 text-right">
+                <span className="text-[11px] font-mono text-slate-500 uppercase tracking-widest">
+                  Archival Registry SDG-1664
+                </span>
               </div>
 
             </div>

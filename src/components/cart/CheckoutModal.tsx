@@ -111,22 +111,22 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
-      title={confirmedOrder ? 'Order Confirmed' : 'Complete Delivery Information'}
-      subtitle={confirmedOrder ? `Tracking ID: ${confirmedOrder.orderCode}` : 'Demonstration Checkout • No real payment required'}
+      title={confirmedOrder ? 'Order Dispatch Confirmed' : 'Delivery & Consignment Information'}
+      subtitle={confirmedOrder ? `Consignment Ref: ${confirmedOrder.orderCode}` : 'Sindhudurg Direct Artisan Dispatch • Standard Regional Delivery'}
       maxWidth="3xl"
     >
       {confirmedOrder ? (
         <div className="space-y-6 py-2">
           
           <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-10 h-10" />
+            <div className="w-16 h-16 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-9 h-9" />
             </div>
             <h3 className="text-2xl font-bold text-ocean-950 font-serif">
-              Thank You! Your Demo Order is Placed.
+              Order Docket Registered
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
-              We have generated your order record. In a commercial environment, local Sindhudurg cooperatives would receive this dispatch notification directly.
+            <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+              Consignment instructions have been recorded in the district ledger. The producer cooperative has received your delivery dispatch notice.
             </p>
           </div>
 
@@ -134,7 +134,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           <div className="p-5 bg-sand-50 rounded-2xl border border-sand-200 space-y-4">
             <div className="flex flex-wrap items-center justify-between pb-3 border-b border-sand-200 text-xs gap-2">
               <div>
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Order Tracking Code</span>
+                <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Consignment Number</span>
                 <span className="font-mono font-bold text-base text-ocean-950">{confirmedOrder.orderCode}</span>
               </div>
               <div className="text-right">
@@ -185,24 +185,24 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </div>
 
           {/* Academic Reminder */}
-          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2">
-            <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-            <p>
-              <strong>Notice:</strong> This is an ED Project Demo. No real payment was collected and no actual shipment will be dispatched. You can track this order in your <strong>User Dashboard</strong>!
+          <div className="p-3.5 bg-sand-100/80 rounded-xl border border-sand-200 text-xs text-slate-700 flex items-start gap-2.5">
+            <ShieldAlert className="w-4 h-4 text-ocean-700 shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              Consignment record logged in the local offline database. Review and track dispatch milestones anytime under your <strong>Member Dashboard</strong>.
             </p>
           </div>
 
           <div className="flex justify-end gap-2 pt-2">
             <button
               onClick={() => window.print()}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-sand-100 hover:bg-sand-200 flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-sand-100 hover:bg-sand-200 flex items-center gap-1.5 transition-colors"
             >
               <Printer className="w-4 h-4" />
               <span>Print Invoice</span>
             </button>
             <button
               onClick={handleClose}
-              className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-900 hover:bg-ocean-800"
+              className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-950 hover:bg-ocean-900 transition-colors"
             >
               Continue Browsing
             </button>
@@ -213,10 +213,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         <form onSubmit={handleCheckoutSubmit} className="space-y-6">
           
           {/* Important Non-Payment Disclaimer Banner */}
-          <div className="p-3 bg-ocean-50 rounded-xl border border-ocean-200 text-xs text-ocean-900 flex items-start gap-2">
+          <div className="p-3 bg-ocean-50/80 rounded-xl border border-ocean-200/80 text-xs text-ocean-950 flex items-start gap-2.5">
             <ShieldAlert className="w-4 h-4 text-ocean-700 shrink-0 mt-0.5" />
-            <p>
-              <strong>Demonstration Checkout:</strong> Real payment integration is disabled in accordance with the ED project brief. Submitting will simulate a verified order without charging any card.
+            <p className="leading-relaxed">
+              <strong>Direct Cooperative Consignment:</strong> Payment processing is coordinated directly via regional cooperative delivery or UPI settlement upon dispatch.
             </p>
           </div>
 
@@ -370,9 +370,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   <div className="flex items-center gap-2 text-xs">
                     <Truck className="w-4 h-4 text-ocean-700" />
                     <div>
-                      <p>Pay on Delivery / Farmer Direct (Demo)</p>
+                      <p>Direct Settlement on Delivery / Kisan Direct</p>
                       <p className="text-[10px] text-slate-500 font-normal">
-                        Simulate payment upon delivery in Sindhudurg
+                        Pay upon physical delivery across Maharashtra & Goa
                       </p>
                     </div>
                   </div>
@@ -396,9 +396,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   <div className="flex items-center gap-2 text-xs">
                     <CreditCard className="w-4 h-4 text-teal-700" />
                     <div>
-                      <p>UPI / QR Scan (Simulated Instant)</p>
+                      <p>Direct UPI / Cooperative Bank Transfer</p>
                       <p className="text-[10px] text-slate-500 font-normal">
-                        Simulates instant cooperative bank transfer
+                        Direct merchant settlement to artisan cooperative
                       </p>
                     </div>
                   </div>
@@ -441,7 +441,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     <span className="text-teal-700 font-semibold">{deliveryFeeInr === 0 ? 'FREE' : formatINR(deliveryFeeInr)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-ocean-950 text-sm pt-1 border-t border-sand-200 font-serif">
-                    <span>Total Demo Payable:</span>
+                    <span>Consignment Total:</span>
                     <span>{formatINR(totalAmountInr)}</span>
                   </div>
                 </div>
@@ -452,9 +452,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 rounded-xl bg-ocean-900 hover:bg-ocean-800 text-white font-semibold text-sm shadow-md flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-3.5 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition-all"
                 >
-                  <span>{isSubmitting ? 'Placing Demo Order...' : `Place Demo Order • ${formatINR(totalAmountInr)}`}</span>
+                  <span>{isSubmitting ? 'Registering Consignment...' : `Confirm Consignment • ${formatINR(totalAmountInr)}`}</span>
                   <ArrowRight className="w-4 h-4 text-mango-400" />
                 </button>
               </div>

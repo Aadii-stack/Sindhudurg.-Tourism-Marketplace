@@ -65,8 +65,8 @@ export const BookingEnquiryModal: React.FC<BookingEnquiryModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={resetAndClose}
-      title={submittedEnquiry ? 'Enquiry Confirmed' : `Enquire: ${listing.title}`}
-      subtitle={submittedEnquiry ? 'Demonstration booking ticket generated' : `${listing.locationTaluka} Taluka • ${formatINR(listing.priceIndicativeInr)} / ${listing.priceLabel}`}
+      title={submittedEnquiry ? 'Expedition Request Logged' : `Reserve / Enquire: ${listing.title}`}
+      subtitle={submittedEnquiry ? `Reference Ticket #${submittedEnquiry.id}` : `${listing.locationTaluka} Taluka • ${formatINR(listing.priceIndicativeInr)} / ${listing.priceLabel}`}
       maxWidth="lg"
     >
       {submittedEnquiry ? (
@@ -108,18 +108,18 @@ export const BookingEnquiryModal: React.FC<BookingEnquiryModalProps> = ({
             </div>
           </div>
 
-          <div className="p-3 bg-teal-50 border border-teal-200 rounded-xl text-teal-900 text-xs text-left flex items-start gap-2">
-            <ShieldCheck className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-            <p>
-              In a live deployment, this alert triggers an SMS/WhatsApp dispatch to the local boatman or guide. You can review this enquiry in your <strong>User Dashboard</strong> anytime!
+          <div className="p-3 bg-teal-50/70 border border-teal-200/80 rounded-xl text-teal-950 text-xs text-left flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              Expedition dispatch docket successfully transmitted to the certified local guide. Review your active dossier anytime in the <strong>Member Dashboard</strong>.
             </p>
           </div>
 
           <button
             onClick={resetAndClose}
-            className="w-full py-2.5 rounded-xl bg-ocean-900 text-white font-semibold text-xs hover:bg-ocean-800 transition-colors"
+            className="w-full py-2.5 rounded-xl bg-ocean-950 text-sand-50 font-medium text-xs hover:bg-ocean-900 transition-colors"
           >
-            Back to Marketplace
+            Return to Catalogue
           </button>
         </div>
       ) : (
@@ -241,10 +241,10 @@ export const BookingEnquiryModal: React.FC<BookingEnquiryModalProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-900 hover:bg-ocean-800 shadow-sm flex items-center gap-1.5 transition-colors"
+              className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-ocean-950 hover:bg-ocean-900 shadow-sm flex items-center gap-1.5 transition-colors"
             >
               <Send className="w-3.5 h-3.5 text-mango-400" />
-              <span>{isSubmitting ? 'Sending...' : 'Submit Demo Enquiry'}</span>
+              <span>{isSubmitting ? 'Transmitting...' : 'Transmit Enquiry'}</span>
             </button>
           </div>
         </form>

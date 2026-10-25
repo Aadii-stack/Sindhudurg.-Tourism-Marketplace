@@ -187,15 +187,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onProceedCheckout }) => 
                   closeCart();
                   onProceedCheckout();
                 }}
-                className="w-full py-3.5 rounded-xl bg-ocean-900 hover:bg-ocean-800 text-white font-semibold text-sm shadow-md flex items-center justify-center gap-2 transition-all"
+                className="w-full py-3.5 rounded-xl bg-ocean-950 hover:bg-ocean-900 text-white font-semibold text-sm shadow-sm flex items-center justify-center gap-2 transition-all"
               >
-                <span>Proceed to Demo Checkout</span>
+                <span>Proceed to Consignment Checkout</span>
                 <ArrowRight className="w-4 h-4 text-mango-400" />
               </button>
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
                 <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-                <span>Zero payment credential required for evaluation</span>
+                <span>Direct artisan cooperative dispatch • Zero card fees</span>
               </div>
             </div>
           )}

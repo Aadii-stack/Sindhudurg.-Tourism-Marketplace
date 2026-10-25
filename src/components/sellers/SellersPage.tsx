@@ -12,20 +12,21 @@ export const SellersPage: React.FC<SellersPageProps> = ({ onBrowseSellerProducts
   return (
     <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      {/* Header */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-ocean-950 via-teal-950 to-slate-900 text-white p-6 sm:p-10 shadow-lg overflow-hidden">
-        <div className="relative z-10 max-w-2xl space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-mango-400 flex items-center gap-1.5">
-            <Store className="w-3.5 h-3.5" />
-            Verified Artisan & Producer Guild
+      {/* Editorial Header */}
+      <div className="border-b border-sand-200/90 pb-8 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono uppercase tracking-widest text-slate-500">
+          <span className="flex items-center gap-1.5">
+            <Store className="w-3.5 h-3.5 text-mango-600" />
+            Sindhudurg Cooperative Registry
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif tracking-tight">
-            Sindhudurg Cooperative Network
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Every seller on our marketplace is a certified resident producer, orchard owner, or MTDC/PADI recognized dive guide operating in Sindhudurg district.
-          </p>
+          <span>Direct Producer Guild • Fair Compensation</span>
         </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-ocean-950 tracking-tight">
+          Artisans, Cultivators & Expedition Guides
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+          Every provider is a verified local resident, orchard owner, or MTDC/PADI recognized dive master operating directly within the talukas of Sindhudurg.
+        </p>
       </div>
 
       {/* Grid */}

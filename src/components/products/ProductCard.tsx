@@ -1,10 +1,9 @@
 import React from 'react';
-import { ShoppingBag, Heart, Star, MapPin, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag, Heart, Star, CheckCircle2 } from 'lucide-react';
 import { Product } from '../../types';
 import { formatINR } from '../../lib/utils';
 import { useCart } from '../../context/CartContext';
 import { useMarketplace } from '../../context/MarketplaceContext';
-import { Badge } from '../common/Badge';
 
 interface ProductCardProps {
   product: Product;
@@ -20,14 +19,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isFav = isFavorite(product.id);
 
   return (
-    <div className="group relative bg-white rounded-2xl border border-sand-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+    <article className="group bg-white rounded-2xl border border-sand-200/90 overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between">
       
-      {/* Top Image & Floating Badges */}
-      <div className="relative aspect-square w-full overflow-hidden bg-sand-100 cursor-pointer" onClick={() => onQuickView(product)}>
+      {/* Visual Canvas with Subtle Heart Toggle */}
+      <div
+        className="relative aspect-square w-full overflow-hidden bg-sand-100 cursor-pointer"
+        onClick={() => onQuickView(product)}
+      >
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
           loading="lazy"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80';
@@ -41,73 +43,62 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             toggleFavorite(product.id);
           }}
           aria-label={isFav ? "Remove from wishlist" : "Add to wishlist"}
-          className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md shadow-sm transition-all ${
+          className={`absolute top-3.5 right-3.5 p-2 rounded-full backdrop-blur-md transition-all duration-150 ${
             isFav
-              ? 'bg-kokum-500 text-white'
-              : 'bg-white/80 hover:bg-white text-slate-600 hover:text-kokum-600'
+              ? 'bg-kokum-700 text-white shadow-xs'
+              : 'bg-white/85 hover:bg-white text-slate-700 shadow-2xs'
           }`}
         >
-          <Heart className={`w-4 h-4 ${isFav ? 'fill-white' : ''}`} />
+          <Heart className={`w-3.5 h-3.5 ${isFav ? 'fill-white' : ''}`} />
         </button>
 
-        {/* Origin Taluka Badge */}
-        <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-900/80 backdrop-blur-sm text-white">
-            <MapPin className="w-3 h-3 text-teal-400" />
+        {/* Quiet Provenance Ribbon */}
+        <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
+          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-ocean-950/80 backdrop-blur-sm text-white">
             {product.originTaluka}
           </span>
           {product.isOrganic && (
-            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-700/80 backdrop-blur-sm text-white">
-              Organic
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-900/80 backdrop-blur-sm text-emerald-100">
+              Chemical-Free
             </span>
           )}
         </div>
       </div>
 
       {/* Body Information */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div className="space-y-1.5">
-          {/* Category & Demo Label */}
+          {/* Category */}
           <div className="flex items-center justify-between text-xs text-slate-500">
-            <span className="text-teal-700 font-semibold truncate max-w-[150px]">
-              {product.categoryName || 'Konkan Specialty'}
+            <span className="text-teal-800 font-medium tracking-wide uppercase text-[10px]">
+              {product.categoryName || 'Konkan Heritage'}
             </span>
-            <span className="text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
-              Demo Item
-            </span>
+            <div className="flex items-center gap-1 text-[11px] text-slate-600">
+              <Star className="w-3 h-3 fill-mango-400 text-mango-500" />
+              <span className="font-bold text-slate-800">{product.rating}</span>
+            </div>
           </div>
 
           {/* Product Title */}
           <h3
             onClick={() => onQuickView(product)}
-            className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-ocean-900 transition-colors line-clamp-2 cursor-pointer leading-snug"
+            className="font-bold text-ocean-950 text-base font-serif group-hover:text-ocean-700 transition-colors line-clamp-2 cursor-pointer leading-snug"
           >
             {product.name}
           </h3>
 
-          {/* Seller Provenance */}
-          <p className="text-xs text-slate-500 flex items-center gap-1">
-            <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
-            <span className="truncate">{product.sellerName || 'Verified Artisan Collective'}</span>
-          </p>
-
-          {/* Short description */}
-          <p className="text-xs text-slate-600 line-clamp-2 pt-1">
-            {product.description}
+          {/* Producer Provenance */}
+          <p className="text-xs text-slate-500 flex items-center gap-1 pt-0.5">
+            <CheckCircle2 className="w-3 h-3 text-teal-700 shrink-0" />
+            <span className="truncate">{product.sellerName || 'Verified Collective'}</span>
           </p>
         </div>
 
-        {/* Rating and Price */}
-        <div className="pt-4 mt-3 border-t border-sand-100 flex items-end justify-between gap-2">
+        {/* Pricing and Tactile Add Action */}
+        <div className="pt-3 border-t border-sand-100 flex items-end justify-between gap-3">
           <div>
-            <div className="flex items-center gap-1 text-xs text-slate-600 mb-1">
-              <Star className="w-3.5 h-3.5 fill-mango-400 text-mango-500" />
-              <span className="font-bold text-slate-800">{product.rating}</span>
-              <span className="text-slate-400">({product.reviewsCount})</span>
-            </div>
-            
             <div className="flex items-baseline gap-1.5">
-              <span className="text-lg sm:text-xl font-extrabold text-ocean-950 font-serif">
+              <span className="text-lg font-bold text-ocean-950 font-serif">
                 {formatINR(product.priceInr)}
               </span>
               {product.mrpInr && product.mrpInr > product.priceInr && (
@@ -116,28 +107,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 </span>
               )}
             </div>
-            <span className="text-[11px] text-slate-500 block">
+            <span className="text-[11px] text-slate-500 block font-light">
               {product.unit}
             </span>
           </div>
 
-          {/* Add to Cart Button */}
           <button
             onClick={() => addToCart(product, 1)}
             disabled={product.stockQuantity === 0}
-            className={`p-2.5 sm:px-3 sm:py-2 rounded-xl flex items-center gap-1.5 text-xs font-semibold shadow-xs transition-all ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all duration-150 active:scale-95 ${
               product.stockQuantity === 0
                 ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                : 'bg-ocean-900 hover:bg-ocean-800 text-white'
+                : 'bg-ocean-900 hover:bg-ocean-800 text-white shadow-xs'
             }`}
           >
-            <ShoppingBag className="w-4 h-4 text-mango-400" />
-            <span className="hidden sm:inline">Add</span>
+            <ShoppingBag className="w-3.5 h-3.5 text-mango-400" />
+            <span>Add</span>
           </button>
         </div>
 
       </div>
 
-    </div>
+    </article>
   );
 };

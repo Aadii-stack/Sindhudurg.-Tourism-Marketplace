@@ -52,20 +52,21 @@ export const TourismCatalogue: React.FC = () => {
   return (
     <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      {/* Hero Header */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-ocean-950 via-teal-950 to-slate-900 text-white p-6 sm:p-10 shadow-lg overflow-hidden">
-        <div className="relative z-10 max-w-2xl space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-teal-400 flex items-center gap-1.5">
-            <Compass className="w-3.5 h-3.5" />
-            Coastal Journeys & Living Heritage
+      {/* Editorial Header */}
+      <div className="border-b border-sand-200/90 pb-8 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono uppercase tracking-widest text-slate-500">
+          <span className="flex items-center gap-1.5">
+            <Compass className="w-3.5 h-3.5 text-teal-700" />
+            Arabian Sea Coastline • 121 km Marine Corridor
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif tracking-tight">
-            Sindhudurg Tourism & Expeditions
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            From submerged coral reefs and 17th-century bastion walls to royal lacquer workshops and authentic Malvani village hospitality.
-          </p>
+          <span>Fortresses • Living Coral • Heritage Homestays</span>
         </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-ocean-950 tracking-tight">
+          Sindhudurg Expeditions & Coastal Heritage
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+          Curated diving across Tarkarli&apos;s living reef, archaeological walks through Chhatrapati Shivaji Maharaj&apos;s 1664 marine fortress, and authentic Konkani family homestays.
+        </p>
       </div>
 
       {/* Filter and Control Bar */}
