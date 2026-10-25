@@ -45,7 +45,22 @@ export class JsonDatabaseManager {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        // Auto-heal any legacy broken image URL
+        let healed = false;
+        if (parsed.products && Array.isArray(parsed.products)) {
+          parsed.products = parsed.products.map((p: Product) => {
+            if (p.id === 'p7' && (!p.imageUrl || p.imageUrl.includes('photo-1509912760195'))) {
+              healed = true;
+              return { ...p, imageUrl: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80' };
+            }
+            return p;
+          });
+        }
+        if (healed) {
+          this.saveDatabase(parsed);
+        }
+        return parsed;
       }
     } catch (e) {
       console.warn('Failed to read local database from storage:', e);
