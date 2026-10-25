@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAuth
 }) => {
   const { totalItems, openCart } = useCart();
-  const { user, role, logout } = useAuth();
+  const { user, role, logout, switchDemoRole } = useAuth();
   const { favorites, searchQuery, setSearchQuery } = useMarketplace();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -225,6 +225,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                         Manage Marketplace
                       </button>
                     )}
+
+                    <div className="px-4 py-2 border-t border-sand-100 bg-sand-50/60">
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                        Switch Persona
+                      </p>
+                      <div className="grid grid-cols-3 gap-1">
+                        {(['customer', 'seller', 'admin'] as const).map((r) => (
+                          <button
+                            key={r}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              switchDemoRole(r);
+                              setUserDropdownOpen(false);
+                            }}
+                            className={`py-1 text-[10px] font-bold rounded-md capitalize transition-colors ${
+                              role === r
+                                ? 'bg-ocean-900 text-white'
+                                : 'bg-white hover:bg-sand-200 text-slate-700 border border-sand-200'
+                            }`}
+                          >
+                            {r === 'customer' ? 'Tourist' : r}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
 
                     <div className="border-t border-sand-100 my-1" />
 

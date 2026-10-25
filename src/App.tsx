@@ -43,9 +43,6 @@ const MainApp: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-sand-50 selection:bg-ocean-100 selection:text-ocean-900">
       
-      {/* Top Banner (Local JSON Database Indicator & Export) */}
-      <DemoBanner />
-
       {/* Main Navbar */}
       <Navbar
         activeTab={activeTab}
